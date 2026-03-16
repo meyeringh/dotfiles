@@ -14,16 +14,34 @@ sudo openvpn --config /etc/openvpn/sipgate.conf \
     --daemon --log /tmp/openvpn.log
 sleep 3
 if pgrep openvpn > /dev/null; then
-    # add only sipgate internal routes through the VPN tunnel
-    VPN_GW=$(sudo awk '/route_vpn_gateway/{print $2}' /tmp/openvpn.log | tail -1)
-    if [ -n "$VPN_GW" ]; then
-        sudo ip route add 10.0.0.0/8 via "$VPN_GW" dev tun0 2>/dev/null || true
-        sudo ip route add 172.16.0.0/12 via "$VPN_GW" dev tun0 2>/dev/null || true
-        echo "VPN connected (split-tunnel via $VPN_GW)"
-    else
-        echo "VPN connected but could not determine gateway. Check: vpn-log"
-        echo "Add routes manually: sudo ip route add 10.0.0.0/8 via <gw> dev tun0"
-    fi
+    GW=217.10.69.1
+    # sipgate internal routes (from PUSH_REPLY)
+    for route in \
+        217.10.64.0/20 \
+        212.9.32.0/19 \
+        217.116.112.0/20 \
+        82.116.96.0/19 \
+        95.174.128.0/19 \
+        92.79.62.192/26 \
+        192.109.199.0/24 \
+        34.98.92.3/32 \
+        10.11.0.0/16 \
+        10.13.0.0/16 \
+        10.14.0.0/16 \
+        10.16.0.0/12 \
+        10.42.0.0/15 \
+        10.50.0.0/16 \
+        10.60.0.0/16 \
+        10.70.0.0/16 \
+        10.80.0.0/16 \
+        10.90.0.0/16 \
+        10.183.158.5/32 \
+        134.119.225.122/32 \
+        217.10.68.69/32 \
+        217.10.68.68/32; do
+        sudo ip route add "$route" via "$GW" dev tun0 2>/dev/null || true
+    done
+    echo "VPN connected (split-tunnel, $(echo "$route" | wc -w) routes via $GW)"
 else
     echo "VPN failed to start. Check: vpn-log"
 fi
