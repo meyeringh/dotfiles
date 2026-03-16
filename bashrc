@@ -1,10 +1,10 @@
 # dotfiles bashrc - sourced from ~/.bashrc
 
 # VPN
-alias vpn-up='~/dotfiles/scripts/vpn-up.sh'
-alias vpn-down='~/dotfiles/scripts/vpn-down.sh'
-alias vpn-status='~/dotfiles/scripts/vpn-status.sh'
+alias vpn-up='~/git/dotfiles/scripts/vpn-up.sh'
+alias vpn-down='~/git/dotfiles/scripts/vpn-down.sh'
+alias vpn-status='~/git/dotfiles/scripts/vpn-status.sh'
 alias vpn-log='tail -f /tmp/openvpn.log'
 
 # Scripts
-export PATH="$HOME/dotfiles/scripts:$PATH"
+export PATH="$HOME/git/dotfiles/scripts:$PATH"
