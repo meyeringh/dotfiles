@@ -8,7 +8,7 @@ if [ ! -s "$CREDS" ]; then
     printf '%s\n%s\n' "$USER" "$PASS" > "$CREDS"
     chmod 600 "$CREDS"
 fi
-sudo openvpn --config /etc/openvpn/sipgate.conf --auth-user-pass "$CREDS" --daemon --log /tmp/openvpn.log
+sudo openvpn --config /etc/openvpn/sipgate.conf --auth-user-pass "$CREDS" --pull-filter ignore redirect-gateway --daemon --log /tmp/openvpn.log
 sleep 2
 if pgrep openvpn > /dev/null; then
     echo "VPN connecting... check vpn-log for details"
