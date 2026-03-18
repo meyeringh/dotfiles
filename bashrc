@@ -16,11 +16,10 @@ export HISTTIMEFORMAT="[%F %T] "
 export HISTFILE=~/.bash_eternal_history
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-# Ansible
 # Git prompt
-if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+if [ -f "$HOME/git/bash-git-prompt/gitprompt.sh" ]; then
     GIT_PROMPT_ONLY_IN_REPO=1
-    source "$HOME/.bash-git-prompt/gitprompt.sh"
+    source "$HOME/git/bash-git-prompt/gitprompt.sh"
 fi
 
 # Ansible
