@@ -16,9 +16,14 @@ export HISTTIMEFORMAT="[%F %T] "
 export HISTFILE=~/.bash_eternal_history
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
+# Bastion prompt prefix
+BASTION_TAG='\[\e[1;31m\][BASTION]\[\e[0m\] '
+PS1="${BASTION_TAG}${PS1}"
+
 # Git prompt
 if [ -f "$HOME/git/bash-git-prompt/gitprompt.sh" ]; then
     GIT_PROMPT_ONLY_IN_REPO=1
+    GIT_PROMPT_START="${BASTION_TAG}_LAST_COMMAND_INDICATOR_ \u@\h:\w"
     source "$HOME/git/bash-git-prompt/gitprompt.sh"
 fi
 
