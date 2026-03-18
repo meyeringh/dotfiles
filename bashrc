@@ -15,3 +15,8 @@ export HISTSIZE=
 export HISTTIMEFORMAT="[%F %T] "
 export HISTFILE=~/.bash_eternal_history
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+# Ansible
+export ANSIBLE_VAULT_PASSWORD_FILE=~/git/dotfiles/scripts/ansible-vault-pass.sh
+export ANSIBLE_BECOME_PASSWORD_FILE=~/git/dotfiles/scripts/ansible-become-pass.sh
+export ANSIBLE_CONNECTION_PASSWORD_FILE=~/git/dotfiles/scripts/ansible-connection-pass.sh
