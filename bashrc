@@ -17,6 +17,13 @@ export HISTFILE=~/.bash_eternal_history
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # Ansible
+# Git prompt
+if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+    GIT_PROMPT_ONLY_IN_REPO=1
+    source "$HOME/.bash-git-prompt/gitprompt.sh"
+fi
+
+# Ansible
 export ANSIBLE_VAULT_PASSWORD_FILE=~/git/dotfiles/scripts/ansible-vault-pass.sh
 export ANSIBLE_BECOME_PASSWORD_FILE=~/git/dotfiles/scripts/ansible-become-pass.sh
 export ANSIBLE_CONNECTION_PASSWORD_FILE=~/git/dotfiles/scripts/ansible-connection-pass.sh
